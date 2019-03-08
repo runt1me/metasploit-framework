@@ -72,6 +72,9 @@ module Payload
     arch = payload.arch
     plat = opts['Platform'] || payload.platform
 
+    $stderr.puts "LOOK HERE: #{payload.arch}"
+    $stderr.puts "LOOK HERE TOO: #{fmt}"
+
     # Save off the original payload length
     len = e.encoded.length
 
@@ -79,7 +82,7 @@ module Payload
     if arch.index(ARCH_JAVA) and fmt == 'war'
       return e.encoded_war.pack
     end
-
+ 
     output = Msf::Util::EXE.to_executable_fmt(framework, arch, plat, e.encoded, fmt, exeopts)
 
     if not output
