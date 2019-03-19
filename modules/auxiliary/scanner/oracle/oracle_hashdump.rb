@@ -21,7 +21,7 @@ class MetasploitModule < Msf::Auxiliary
           These hashes vary across many Oracle DB versions.
           This module supports up to 12c Release 2,
 	  and will likely work with 18c,
-	  but this is untested.
+	  but 18c support is ultimately untested.
       },
       'Author'         => ['theLightCosine'],
       'License'        => MSF_LICENSE
@@ -110,9 +110,9 @@ class MetasploitModule < Msf::Auxiliary
     # Note: The behavior of Oracle 18c is expected to be the same as 12c, since no changes in hash functionality are documented
 
     if is_11g==false && is_12c==false
-      jtr_format = "des"
+      jtr_format = "des,oracle"
     elsif is_11g==true
-      jtr_format = "raw-sha1"
+      jtr_format = "raw-sha1,oracle11"
     else
       jtr_format = "oracle12c"
     end
